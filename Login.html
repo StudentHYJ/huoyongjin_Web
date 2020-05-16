@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="short icon" href="Resource/icon.png">
+    <link rel="stylesheet" href="ExternalStyle.css">
+    <script type="text/javascript" src="CommonClass.js"></script>
+    <title>霍勇进</title>
+    <style>
+        .F_div{
+            width: 100%;
+        }
+        .F_inner_div{
+            width: 90%;
+            background: white;
+            height: 50px;
+            line-height: 50px;
+            margin: 1px auto;
+            border-radius: 5px;
+        }
+        .F_inner_div input{
+            border: none;
+            outline: medium;
+        }
+        #L_btn{
+            background: blue;
+            color: white;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+        <header>
+            <span>登录</span>
+        </header>
+            <div class="L_div">
+                <div style="text-align: center; vertical-align: middle">
+                <img class="L_div_img" src="Resource/head.png" alt="">
+                </div>
+            </div>
+       <form action="">
+           <div class="F_div">
+               <div class="F_inner_div" style="border-bottom-left-radius: 0;border-bottom-right-radius: 0">
+                <span>用户名：</span>
+                <input type="text" id="L_account"><br>
+               </div>
+           </div>
+           <div class="F_div">
+               <div class="F_inner_div" style="border-top-left-radius: 0;border-top-right-radius: 0">
+                <span>密码：</span>
+                <input type="password" id="L_pwd"><br>
+               </div>
+           </div>
+           <div class="F_div" style="margin-top: 20px">
+               <div class="F_inner_div" style="background: rgb(36, 92, 161); text-align: center">
+                  <input type="button" value="登录" id="L_btn">
+               </div>
+           </div>
+       </form>
+        <script>
+            var btn = document.querySelector("#L_btn");
+            btn.onclick = function() {
+                var userName= encodeURIComponent(document.querySelector("#L_account").value);
+                var password= encodeURIComponent(document.querySelector("#L_pwd").value);
+                //创建请求对旬xhr
+
+                var par3 = "username" + userName + "&pwd=" + password;
+
+                requestMethod('post', 'login', par3, function (returnStr) {
+                    if(returnStr == "登录成功"){
+                        window.localStorage.setItem("userName", userName);
+
+                        location.href = "DropletService.html";
+                    }else{
+                        alert(returnStr);
+                    }
+                });
+            }
+
+        </script>
+
+</body>
+</html>
